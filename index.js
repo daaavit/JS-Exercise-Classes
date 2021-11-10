@@ -8,6 +8,8 @@
         + If a plane lands, its `isFlying` property gets set to false.
 */
 
+const { DEPRECATED_KEYS } = require("@babel/types");
+
 // EXAMPLE SOLUTION CODE:
 class Airplane {
   constructor(name) {
@@ -21,6 +23,8 @@ class Airplane {
     this.isFlying = false;
   }
 }
+
+
 
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -42,8 +46,38 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
 }
+
+Person.prototype.eat = function (edible) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(edible);
+  }
+}
+
+Person.prototype.poop = function () {
+  this.stomach = [];
+}
+
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`
+}
+
+const personFat = new Person("James", 26)
+
+personFat.eat('shawarma');
+personFat.eat('hot dog');
+personFat.poop();
+// console.log(personFat.toString());
+
+// console.log(personFat.stomach);
+
+
+
 
 /*
   TASK 2
@@ -60,8 +94,26 @@ class Person {
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometre = 0;
+  }
 }
+
+Car.prototype.fill = function (gallons) {
+  this.tank = gallons;
+}
+
+Car.prototype.drive = function (distance) {
+  this.odometre = distance;
+}
+
+const car = new Car("BMW", 20);
+
+console.log(car.fill(15));
+console.log(car.drive(60));
 
 /*
   TASK 3
@@ -76,7 +128,7 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  
+
 }
 
 /*
@@ -112,7 +164,7 @@ class Instructor {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 class Student {
-   
+
 }
 
 /*
@@ -129,7 +181,7 @@ class Student {
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 class ProjectManager {
-   
+
 }
 /*
   STRETCH PROBLEM (no tests!)
@@ -143,7 +195,7 @@ class ProjectManager {
 
 //End of Challenge
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
-function foo(){
+function foo() {
   return 'bar';
 }
 
