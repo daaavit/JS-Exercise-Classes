@@ -8,7 +8,7 @@
         + If a plane lands, its `isFlying` property gets set to false.
 */
 
-const { DEPRECATED_KEYS } = require("@babel/types");
+const { DEPRECATED_KEYS, throwStatement } = require("@babel/types");
 
 // EXAMPLE SOLUTION CODE:
 class Airplane {
@@ -93,27 +93,35 @@ personFat.poop();
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car {
-  constructor(model, milesPerGallon) {
-    this.model = model;
-    this.milesPerGallon = milesPerGallon;
-    this.tank = 0;
-    this.odometre = 0;
-  }
-}
+// class Car {
+//   constructor(model, milesPerGallon) {
+//     this.model = model;
+//     this.milesPerGallon = milesPerGallon;
+//     this.tank = 0;
+//     this.odometre = 0;
+//   }
+// }
 
-Car.prototype.fill = function (gallons) {
-  this.tank = gallons;
-}
+// Car.prototype.fill = function (gallons) {
+//   this.tank = this.tank + gallons;
+// }
 
-Car.prototype.drive = function (distance) {
-  this.odometre = distance;
-}
+// Car.prototype.drive = function (distance) {
+//   this.odometre = this.odometre + distance;
+//   distance = this.milesPerGallon * this.tank
+//   if(this.milesPerGallon * this.tank === 0) {
+//     return `I ran out of fuel at ${this.odometre} miles!`
+//   }
+// }
 
-const car = new Car("BMW", 20);
 
-console.log(car.fill(15));
-console.log(car.drive(60));
+
+// const Lexus = new Car("Lexus", 18);
+
+// console.car(Lexus.fill(15));
+// console.log(Lexus.drive(60, 34));
+
+
 
 /*
   TASK 3
@@ -128,7 +136,14 @@ console.log(car.drive(60));
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor (name, age, location) {
+    this.name = name;
+    this.age = age;
+    this.location = location;
+    }
+    speak(){
+      return  `Hello my name is ${this.name}, I am from ${this.location}`
+  }
 }
 
 /*
@@ -146,7 +161,20 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor {
+  constructor({name, age, location, specialty, favLanguage, catchPhrase}) {
+    super({name, age, location, specialty, favLanguage, catchPhrase});
+    this.specialty = 'specialty';
+    this.favLanguage = 'favLanguage';
+    this.catchPhrase = 'Dont forget the homies '
+  }
+ demo(subject) {
+   return `Today we are learning about ${subject}' where subject is the param passed in.`
 
+ }
+ grade(studet, subject){
+   return '{student.name} receives a perfect score on {subject}'
+
+ }
 }
 /*
   TASK 5
