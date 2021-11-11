@@ -93,30 +93,31 @@ personFat.poop();
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-// class Car {
-//   constructor(model, milesPerGallon) {
-//     this.model = model;
-//     this.milesPerGallon = milesPerGallon;
-//     this.tank = 0;
-//     this.odometre = 0;
-//   }
-// }
+class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometre = 0;
+  }
+}
 
-// Car.prototype.fill = function (gallons) {
-//   this.tank = this.tank + gallons;
-// }
+Car.prototype.fill = function (gallons) {
+  this.tank = this.tank + gallons;
+}
 
-// Car.prototype.drive = function (distance) {
-//   this.odometre = this.odometre + distance;
-//   distance = this.milesPerGallon * this.tank
-//   if(this.milesPerGallon * this.tank === 0) {
-//     return `I ran out of fuel at ${this.odometre} miles!`
-//   }
-// }
+Car.prototype.drive = function (distance) {
+  this.odometre = this.odometre + distance;
+  distance = this.milesPerGallon * this.tank
+  if(this.milesPerGallon * this.tank === 0) {
+    return `I ran out of fuel at ${this.odometre} miles!`
+  }
+  return this.drive;
+}
 
 
 
-// const Lexus = new Car("Lexus", 18);
+const lexus = new Car("Lexus", 18);
 
 // console.car(Lexus.fill(15));
 // console.log(Lexus.drive(60, 34));
@@ -142,7 +143,7 @@ class Lambdasian {
     this.location = location;
     }
     speak(){
-      return  `Hello my name is ${this.name}, I am from ${this.location}`
+      return  `Hello my name is ${this.name}, I am from ${this.location}`;
   }
 }
 
@@ -160,19 +161,19 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian {
   constructor({name, age, location, specialty, favLanguage, catchPhrase}) {
     super({name, age, location, specialty, favLanguage, catchPhrase});
     this.specialty = 'specialty';
     this.favLanguage = 'favLanguage';
-    this.catchPhrase = 'Dont forget the homies '
+    this.catchPhrase = 'Dont forget the homies ';
   }
  demo(subject) {
-   return `Today we are learning about ${subject}' where subject is the param passed in.`
+   return `Today we are learning about ${subject}' `;
 
  }
- grade(studet, subject){
-   return '{student.name} receives a perfect score on {subject}'
+ grade(student, subject){
+   return `${student.name} receives a perfect score on ${subject}`;
 
  }
 }
@@ -191,8 +192,22 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian{
+  constructor(name, age, location, previousBackground, className, favSubjects) {
+    super({name, age, location, previousBackground, className, favSubjects});
+    this.previousBackground = 'previousBackground';
+    this.className = 'className'
+    this.favSubjects = 'favSubject'
+  }
+listSubject() {
+  return `Loving ${this.favSubjects}.`
+}
+'PRAassignment'(subject) {
+return `${this.name} has submitted a PR for ${subject}`;
+}
+sprintChallenge(subject) {
+  `${this.name} has begun sprint challenge on ${subject}`;
+}
 }
 
 /*
@@ -208,9 +223,22 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+  constructor ({name, age, location, specialty, favLanguage, catchPhrase, gradClassname, favInstructor}) {
+  super({name, age, location, specialty, favLanguage, catchPhrase, gradClassname, favInstructor});
+  this.gradClassname = gradClassname;
+  this.favInstructor = favInstructor;
+  }
+stabdUp (channel) {
+  return `${this.name} announces to ${channel}, @channel standy times!`;
 }
+debugsCode(student, subject) {
+  return  `${this.name} debugs ${this.name}'s code on ${subject}`;
+}
+}
+
+const manager = new ProjectManager('dave', 32, 'dev', 'javascript', 'learn','CS1', 'Sean');
+console.log(manager);
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
